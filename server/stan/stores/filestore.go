@@ -54,7 +54,7 @@ const (
 	subsFileName = "subs" + datSuffix
 
 	// Name of the clients file.
-	clientsFileName = "clients" + datSuffix
+	clientsFileName = "clients_" + os.Hostname() + datSuffix
 
 	// Name of the server file.
 	serverFileName = "server" + datSuffix

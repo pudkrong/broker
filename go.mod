@@ -1,4 +1,4 @@
-module github.com/kubemq-io/broker
+module github.com/pudkrong/broker
 
 go 1.18
 

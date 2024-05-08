@@ -54,7 +54,7 @@ const (
 	subsFileName = "subs" + datSuffix
 
 	// Name of the clients file.
-	clientsFileName = "clients_" + os.Hostname() + datSuffix
+	clientsFileName = "clients" + datSuffix
 
 	// Name of the server file.
 	serverFileName = "server" + datSuffix
@@ -1352,9 +1352,10 @@ func (fs *FileStore) Recover() (*RecoveredState, error) {
 	}
 
 	// Open/Create the client file.
-	fs.clientsFile, err = fs.fm.createFile(clientsFileName, defaultFileFlags, nil)
+	clientsFileNameWithTimestamp := filepath.Join(fmt.Sprintf("clients_%d%s", time.Now().Unix(), datSuffix))
+	fs.clientsFile, err = fs.fm.createFile(clientsFileNameWithTimestamp, defaultFileFlags, nil)
 	if err != nil {
-		return nil, fmt.Errorf("unable to recover client file %q: %v", clientsFileName, err)
+		return nil, fmt.Errorf("unable to recover client file %q: %v", clientsFileNameWithTimestamp, err)
 	}
 
 	// Recover the server file.
